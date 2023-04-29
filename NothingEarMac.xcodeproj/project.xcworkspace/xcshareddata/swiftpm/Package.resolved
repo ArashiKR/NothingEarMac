@@ -8,6 +8,15 @@
         "revision" : "bb2fff7fb79815fad0528da71c9168d570bfc76c",
         "version" : "0.0.3"
       }
+    },
+    {
+      "identity" : "keyboardshortcuts",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/KeyboardShortcuts",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d168f629edcd687383e18c908168520b4f156324"
+      }
     }
   ],
   "version" : 2

@@ -23,6 +23,10 @@ class NothingProtocol: NSObject, IOBluetoothRFCOMMChannelDelegate {
     var connected: Bool = false
 
     func send(message: [UInt8]) {
+        if (!connected) {
+            connect()
+        }
+        
         var msg = message
         let crc = CrcSwift.computeCrc16(Data(msg), mode: .modbus).bigEndian
         
@@ -51,6 +55,7 @@ class NothingProtocol: NSObject, IOBluetoothRFCOMMChannelDelegate {
         let data = Data(bytes: dataPointer, count: dataLength)
         print("Received data on RFCOMM")
         PrintBinary(data: data)
+        processMessage(data: data)
     }
     
     func rfcommChannelOpenComplete(_ rfcommChannel: IOBluetoothRFCOMMChannel!, status error: IOReturn) {
@@ -84,6 +89,31 @@ class NothingProtocol: NSObject, IOBluetoothRFCOMMChannelDelegate {
         }
     }
     
+    func processMessage(data: Data) {
+        let magicNum = data[0]
+        
+        if (magicNum != 0x55) {
+            print("Recieved invalid packet")
+            return
+        }
+        
+        let cmd1 = data[3]
+        let cmd2 = data[4]
+        
+        let cmd = (UInt16(cmd2) << 8) | UInt16(cmd1)
+        
+        print(cmd)
+        
+        switch(cmd) {
+        case 0x4007:
+            print("BATTERY!!!")
+            break;
+        default:
+            print("Unknown command")
+            break
+        }
+    }
+    
     func getMessageHeader(command: UInt16, payloadLength: UInt8) -> [UInt8] {
         return [0x55, 0x60, 0x01, UInt8(truncatingIfNeeded: command), UInt8(truncatingIfNeeded: command >> 8), payloadLength, 0x00, UInt8(Int.random(in: 1...200))];
     }
@@ -98,10 +128,18 @@ class NothingProtocol: NSObject, IOBluetoothRFCOMMChannelDelegate {
         send(message: message)
     }
     
+    func requestBattery() {
+        var message: [UInt8] = getMessageHeader(command: 0xc007, payloadLength: 0x00)
+        
+        send(message: message)
+    }
+    
     func connect() {
         if let device = IOBluetoothDevice.pairedDevices().first(where: { ($0 as? IOBluetoothDevice)?.name == "Ear (2)" }) as? IOBluetoothDevice {
             print("Connecting to \(device.name)")
             connectToDevice(device)
+            
+            requestBattery()
         } else {
             print("Device 'Ear (2)' not found among paired devices")
         }

@@ -6,27 +6,53 @@
 //
 
 import SwiftUI
+import KeyboardShortcuts
+
+let nothing = NothingProtocol()
 
 @main
 struct NothingMacApp: App {
-    let nothing = NothingProtocol()
+    @StateObject private var appState = AppState()
     
     init() {
-        nothing.connect()
+        NSApplication.shared.setActivationPolicy(.accessory)
+        ProcessInfo.processInfo.disableSuddenTermination()
     }
     
     var body: some Scene {
+        Settings {
+            SettingsScreen()
+        }
         MenuBarExtra("Nothing Ear") {
             Button("Noise Cancelling") {
                 nothing.setANC(mode: NothingANCMode.Adaptive)
             }
-            Button("Transparancy") {
+            Button("Transparency") {
                 nothing.setANC(mode: NothingANCMode.Transparency)
             }
             Divider()
+            Button("Settings") {
+                if #available(macOS 13, *) {
+                    NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                } else {
+                    NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                }
+            }
             Button("Quit") {
                 NSApplication.shared.terminate(nil)
             }
+        }
+    }
+}
+
+@MainActor
+final class AppState: ObservableObject {
+    init() {
+        KeyboardShortcuts.onKeyUp(for: .noiseCancelling) { [self] in
+            nothing.setANC(mode: NothingANCMode.Adaptive)
+        }
+        KeyboardShortcuts.onKeyUp(for: .transparency) { [self] in
+            nothing.setANC(mode: NothingANCMode.Transparency)
         }
     }
 }

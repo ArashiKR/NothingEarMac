@@ -11,6 +11,9 @@
 		D828152129FC4C8B00B162E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D828152029FC4C8B00B162E1 /* Assets.xcassets */; };
 		D828152429FC4C8B00B162E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D828152329FC4C8B00B162E1 /* Preview Assets.xcassets */; };
 		D88033D929FC8D4700118406 /* CrcSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D88033D829FC8D4700118406 /* CrcSwift */; };
+		D88033DC29FC90DB00118406 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = D88033DB29FC90DB00118406 /* KeyboardShortcuts */; };
+		D88033DE29FC90E700118406 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88033DD29FC90E700118406 /* Constants.swift */; };
+		D88033E029FC914C00118406 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88033DF29FC914C00118406 /* SettingsScreen.swift */; };
 		D8F11CC929FC4E1400085F50 /* NothingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F11CC829FC4E1400085F50 /* NothingProtocol.swift */; };
 		D8F11CCB29FC4FFA00085F50 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F11CCA29FC4FF900085F50 /* IOBluetooth.framework */; };
 		D8F11CCD29FC50FA00085F50 /* IOBluetoothUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F11CCC29FC50FA00085F50 /* IOBluetoothUI.framework */; };
@@ -23,6 +26,8 @@
 		D828152029FC4C8B00B162E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D828152329FC4C8B00B162E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D828152529FC4C8B00B162E1 /* NothingMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NothingMac.entitlements; sourceTree = "<group>"; };
+		D88033DD29FC90E700118406 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D88033DF29FC914C00118406 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		D8F11CC629FC4E0700085F50 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D8F11CC829FC4E1400085F50 /* NothingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingProtocol.swift; sourceTree = "<group>"; };
 		D8F11CCA29FC4FF900085F50 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
@@ -36,6 +41,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8F11CCB29FC4FFA00085F50 /* IOBluetooth.framework in Frameworks */,
+				D88033DC29FC90DB00118406 /* KeyboardShortcuts in Frameworks */,
 				D8F11CCD29FC50FA00085F50 /* IOBluetoothUI.framework in Frameworks */,
 				D88033D929FC8D4700118406 /* CrcSwift in Frameworks */,
 			);
@@ -70,6 +76,8 @@
 				D828152229FC4C8B00B162E1 /* Preview Content */,
 				D8F11CC829FC4E1400085F50 /* NothingProtocol.swift */,
 				D8F11CD129FC8BCB00085F50 /* Utils.swift */,
+				D88033DD29FC90E700118406 /* Constants.swift */,
+				D88033DF29FC914C00118406 /* SettingsScreen.swift */,
 			);
 			path = NothingMac;
 			sourceTree = "<group>";
@@ -110,6 +118,7 @@
 			name = NothingEarMac;
 			packageProductDependencies = (
 				D88033D829FC8D4700118406 /* CrcSwift */,
+				D88033DB29FC90DB00118406 /* KeyboardShortcuts */,
 			);
 			productName = NothingMac;
 			productReference = D828151929FC4C8A00B162E1 /* NothingEarMac.app */;
@@ -141,6 +150,7 @@
 			mainGroup = D828151029FC4C8A00B162E1;
 			packageReferences = (
 				D8F11CCE29FC83BE00085F50 /* XCRemoteSwiftPackageReference "CrcSwift" */,
+				D88033DA29FC90DB00118406 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 			);
 			productRefGroup = D828151A29FC4C8A00B162E1 /* Products */;
 			projectDirPath = "";
@@ -171,6 +181,8 @@
 				D8F11CC929FC4E1400085F50 /* NothingProtocol.swift in Sources */,
 				D828151D29FC4C8A00B162E1 /* NothingMacApp.swift in Sources */,
 				D8F11CD229FC8BCB00085F50 /* Utils.swift in Sources */,
+				D88033DE29FC90E700118406 /* Constants.swift in Sources */,
+				D88033E029FC914C00118406 /* SettingsScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +376,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D88033DA29FC90DB00118406 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		D8F11CCE29FC83BE00085F50 /* XCRemoteSwiftPackageReference "CrcSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanesik/CrcSwift";
@@ -379,6 +399,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D8F11CCE29FC83BE00085F50 /* XCRemoteSwiftPackageReference "CrcSwift" */;
 			productName = CrcSwift;
+		};
+		D88033DB29FC90DB00118406 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D88033DA29FC90DB00118406 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
